@@ -1,0 +1,30 @@
+<div class="login">
+  <span class="login-label">Авторизация</span>
+  <span class="login-text">Добро пожаловать! Введите свои имя пользователя и пароль, либо зарегистрируйте новый аккаунт.</span>
+  <form class="login-form" [formGroup]="authForm">
+    <mat-form-field class="form-username">
+      <mat-label>Имя пользователя</mat-label>
+      <input matInput autocomplete="off" formControlName="username">
+      <mat-error *ngIf="checkControlValidation('username', 'required')">
+        Введите имя пользователя
+      </mat-error>
+      <mat-error *ngIf="checkControlValidation('username', 'minlength') || checkControlValidation('username', 'pattern')">
+        Неверный формат имени пользователя
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-password">
+      <mat-label>Пароль</mat-label>
+      <input matInput autocomplete="off" type="password" formControlName="password">
+      <mat-error *ngIf="checkControlValidation('password', 'required')">
+        Введите пароль
+      </mat-error>
+      <mat-error *ngIf="checkControlValidation('password', 'minlength') || checkControlValidation('password', 'pattern')">
+        Неверный формат пароля
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <div class="login-buttons">
+    <button mat-flat-button color="primary">Войти</button>
+    <button mat-stroked-button>Зарегистрироваться</button>
+  </div>
+</div>

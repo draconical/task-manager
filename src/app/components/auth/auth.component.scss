@@ -11,7 +11,7 @@
     width: 55%;
     height: 100%;
 
-    background-image: url('../../assets/images/chalkboard.jpg');
+    background-image: url('../../../assets/chalkboard.jpg');
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -42,6 +42,7 @@
       box-sizing: border-box;
 
       padding-left: 3rem;
+      padding-top: 3rem;
     }
   }
 }

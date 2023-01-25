@@ -1,3 +1,4 @@
+import { IAuthViewModeEnum } from './../../interfaces/auth.interface';
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -7,5 +8,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AuthComponent {
+  constructor() {}
 
+  authViewModes = IAuthViewModeEnum;
+  authViewMode: IAuthViewModeEnum = IAuthViewModeEnum.Login;
+
+  toggleAuthViewMode(viewMode: IAuthViewModeEnum) {
+    this.authViewMode = viewMode;
+  }
 }

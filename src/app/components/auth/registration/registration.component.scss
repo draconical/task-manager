@@ -1,0 +1,38 @@
+.registration {
+  width: 100%;
+  max-width: 400px;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+
+  &-label {
+    font-size: 2rem;
+  }
+
+  &-text {
+    margin-top: 1.5rem;
+  }
+
+  &-forms {
+    .forms-account, .forms-personal, .forms-final {
+      .account-username, .account-password, .personal-firstname, .personal-lastname, .personal-birthday {
+        width: 100%;
+      }
+
+      .account-buttons, .personal-buttons, .final-buttons {
+        margin-top: 1.5rem;
+
+        button:not(:first-child) {
+          margin-left: 1rem;
+        }
+      }
+    }
+
+    .forms-personal {
+      .mat-input-element:disabled {
+        color: black;
+      }
+    }
+  }
+}

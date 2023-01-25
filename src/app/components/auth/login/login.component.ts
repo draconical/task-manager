@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { IAuthViewModeEnum } from './../../../interfaces/auth.interface';
+import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
+  @Output() regBtnEvent = new EventEmitter<IAuthViewModeEnum>();
+
   constructor() {}
 
   authForm = new FormGroup({
@@ -17,5 +20,9 @@ export class LoginComponent {
 
   checkControlValidation(formControlName: string, errorName: string): boolean {
     return this.authForm.get(formControlName)?.hasError(errorName) || false;
+  }
+
+  registrationBtnHandler(): void {
+    this.regBtnEvent.emit(IAuthViewModeEnum.Registration);
   }
 }

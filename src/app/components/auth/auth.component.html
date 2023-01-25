@@ -2,7 +2,8 @@
   <div class="auth-panel left"></div>
   <div class="auth-panel right">
     <div class="auth-content">
-      <app-login></app-login>
+      <app-login *ngIf="authViewMode === authViewModes.Login" (regBtnEvent)="toggleAuthViewMode($event)"></app-login>
+      <app-registration *ngIf="authViewMode === authViewModes.Registration" (returnBtnEvent)="toggleAuthViewMode($event)"></app-registration>
     </div>
   </div>
 </div>

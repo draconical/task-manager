@@ -1,0 +1,88 @@
+<div class="registration">
+  <span class="registration-label">Регистрация</span>
+  <span class="registration-text">Чтобы зарегистрировать новый аккаунт, продвигайтесь по указанным ниже шагам.</span>
+  <mat-vertical-stepper class="registration-forms" [linear]="true" #stepper>
+    <mat-step [stepControl]="stepOneForm">
+      <form class="forms-account" [formGroup]="stepOneForm">
+        <ng-template matStepLabel>Шаг 1. Данные аккаунта</ng-template>
+        <mat-form-field class="account-username">
+          <mat-label>Имя пользователя</mat-label>
+          <input matInput autocomplete="off" formControlName="username">
+          <mat-hint>Только латиница, без пробелов и не менее 4 знаков</mat-hint>
+          <mat-error *ngIf="checkControlValidation(1, 'username', 'required')">
+            Введите имя пользователя
+          </mat-error>
+          <mat-error *ngIf="checkControlValidation(1, 'username', 'minlength') || checkControlValidation(1, 'username', 'pattern')">
+            Неверный формат имени пользователя
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="account-password">
+          <mat-label>Пароль</mat-label>
+          <input matInput autocomplete="off" formControlName="password">
+          <mat-hint>Только латиница, без пробелов и не менее 4 знаков</mat-hint>
+          <mat-error *ngIf="checkControlValidation(1, 'password', 'required')">
+            Введите пароль
+          </mat-error>
+          <mat-error *ngIf="checkControlValidation(1, 'password', 'minlength') || checkControlValidation(1, 'password', 'pattern')">
+            Неверный формат пароля
+          </mat-error>
+        </mat-form-field>
+        <div class="account-buttons">
+          <button mat-button matStepperNext>Далее</button>
+          <button mat-button type="button" (click)="returnBtnHandler()">Вернуться к авторизации</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="stepTwoForm">
+      <form class="forms-personal" [formGroup]="stepTwoForm">
+        <ng-template matStepLabel>Шаг 2. Немного о себе</ng-template>
+        <mat-form-field class="personal-firstname">
+          <mat-label>Имя</mat-label>
+          <input matInput autocomplete="off" formControlName="firstname">
+          <mat-hint>Только кириллица, без пробелов, чисел и спецсимволов</mat-hint>
+          <mat-error *ngIf="checkControlValidation(2, 'firstname', 'required')">
+            Укажите имя
+          </mat-error>
+          <mat-error *ngIf="checkControlValidation(2, 'firstname', 'pattern')">
+            Неверный формат имени
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="personal-lastname">
+          <mat-label>Фамилия</mat-label>
+          <input matInput autocomplete="off" formControlName="lastname">
+          <mat-hint>Только кириллица, без пробелов, чисел и спецсимволов</mat-hint>
+          <mat-error *ngIf="checkControlValidation(2, 'lastname', 'required')">
+            Укажите фамилию
+          </mat-error>
+          <mat-error *ngIf="checkControlValidation(2, 'lastname', 'pattern')">
+            Неверный формат фамилии
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="personal-birthday">
+          <mat-label>Дата рождения</mat-label>
+          <input matInput autocomplete="off" [matDatepicker]="picker" formControlName="birthday" [disabled]="true" [min]="minDate" [max]="maxDate">
+          <mat-hint>ДД.ММ.ГГГГ</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker [disabled]="false"></mat-datepicker>
+          <mat-error *ngIf="checkControlValidation(2, 'birthday', 'required')">
+            Укажите дату рождения
+          </mat-error>
+        </mat-form-field>
+        <div class="personal-buttons">
+          <button mat-button matStepperNext>Далее</button>
+          <button mat-button matStepperPrevious>Назад</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Почти закончили...</ng-template>
+      <div class="forms-final">
+        <span class="final-text">Чтобы завершить регистрацию, нажмите кнопку "Готово". В противном случае вы можете вернуться на предыдущий этап.</span>
+        <div class="final-buttons">
+          <button mat-button>Готово</button>
+          <button mat-button matStepperPrevious>Назад</button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
